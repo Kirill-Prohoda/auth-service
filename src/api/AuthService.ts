@@ -1,18 +1,18 @@
-import { User } from '../models/baseTypes';
+import { User, Response } from '../models/baseTypes';
 import instance from './axios';
 
 class AuthService {
   static doLogin = async (email: string, pass: string) => {
-    return instance.get(`/users?email=${email}&pass=${pass}`).then(data => {
+    return instance.get(`/users?email=${email}&pass=${pass}`).then((data): Response<User> => {
       if (data.data.length) {
         return {
-          status: data.status === 200,
+          status: 200,
           data: data.data[0],
         };
       }
 
       return {
-        status: data.status === 501,
+        status: 501,
         data: {} as User,
       };
     });

@@ -15,7 +15,7 @@ enum Mode {
 }
 
 const Login = () => {
-  const { authStatus } = useTypedSelector(state => state.auth);
+  const { authStatus, error } = useTypedSelector(state => state.auth);
   const theme = useTheme();
   const navigate = useNavigate();
 
@@ -57,11 +57,11 @@ const Login = () => {
       <div className={st.panel}>
         <Box component="form" onSubmit={handleSubmit} noValidate={false} sx={{ mt: 1 }}>
           <Typography
-            component="h1"
-            variant="h2"
+            component="h2"
+            variant="h3"
             color="text.secondary"
             align="center"
-            sx={{ m: 5 }}
+            sx={{ m: 3 }}
           >
             Вход
           </Typography>
@@ -72,9 +72,10 @@ const Login = () => {
             value={login}
             onChange={handleChange(Mode.Login)}
             id="email"
-            label="Email Address"
+            label="Логин"
             name="email"
             autoComplete="email"
+            size="small"
             autoFocus
           />
           <TextField
@@ -84,15 +85,17 @@ const Login = () => {
             value={pass}
             onChange={handleChange(Mode.Pass)}
             name="password"
-            label="Password"
+            label="Пароль"
             type="password"
             id="password"
+            size="small"
             autoComplete="current-password"
           />
-          <Button type="submit" fullWidth variant="contained" size="large" sx={{ mt: 3, mb: 2 }}>
+          <Button type="submit" fullWidth variant="contained" size="small" sx={{ mt: 3, mb: 2 }}>
             Войти
           </Button>
         </Box>
+        <Typography>{error}</Typography>
       </div>
     </div>
   );

@@ -37,9 +37,10 @@
     "eject": "react-scripts eject",
     "lint": "eslint . + prettier",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "concurrently": "concurrently 'yarn start' 'yarn jsonServer' ",
-    "jsonServer": "json-server --watch --port=3001 db.json"
+    "jsonServer": "json-server --watch --port=3001 db.json",
+    "concurrently": "concurrently 'yarn start' 'yarn jsonServer' "
   },
+  "homepage": "./",
   "eslintConfig": {
     "extends": [
       "react-app",

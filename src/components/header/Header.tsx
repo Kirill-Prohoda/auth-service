@@ -15,10 +15,12 @@ import {
 } from '@mui/material';
 import { ExitToApp, Cookie as Adb, Menu as MenuIcon } from '@mui/icons-material';
 import { useActions } from '../../hooks/useActions';
+import { useTypedSelector } from '../../hooks/useTypeSelectors';
 
 const Header: FC = () => {
   const { doLogout } = useActions();
   const navigate = useNavigate();
+  const { user } = useTypedSelector(state => state.auth);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -46,7 +48,7 @@ const Header: FC = () => {
   ];
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Adb sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -139,7 +141,8 @@ const Header: FC = () => {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 0 }}>
+            <Typography textAlign="center">{user.name}</Typography>
             <Tooltip title="Open settings">
               <IconButton aria-label="fingerprint" sx={{ color: 'white', fontSize: 50 }}>
                 <ExitToApp sx={{ fontSize: 40 }} onClick={handlerClick} />
