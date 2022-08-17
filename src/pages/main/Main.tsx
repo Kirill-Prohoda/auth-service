@@ -1,12 +1,7 @@
-import React from "react";
+import React from 'react';
 
-const Main = () =>{
-
-  return(
-    <div>
-      Main
-    </div>
-  )
-}
+const Main = () => {
+  return <div className={'text-3xl font-bold underline'}>Main</div>;
+};
 
 export default Main;

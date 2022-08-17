@@ -1,12 +1,7 @@
-import React from "react";
+import React from 'react';
 
-const Users = () =>{
-
-  return(
-    <div>
-      Users
-    </div>
-  )
-}
+const Users = () => {
+  return <div>Users</div>;
+};
 
 export default Users;

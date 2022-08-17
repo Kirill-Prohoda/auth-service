@@ -1,11 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
-type User = {};
+export type User = {
+  id: string;
+  name: string;
+};
+
 export enum AuthStatus {
-  Auth = "Auth",
-  NoAuth = "NoAuth",
-  EmptyStatus = "",
+  Auth = 'Auth',
+  NoAuth = 'NoAuth',
+  EmptyStatus = '',
 }
 
 export interface AuthState {
@@ -18,21 +22,21 @@ export interface AuthState {
 const initialState: AuthState = {
   user: {} as User,
   authStatus: AuthStatus.EmptyStatus,
-  error: "",
+  error: '',
   isLoading: false,
 };
 
 export const userSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     setUser: (state, { payload }: PayloadAction<User>) => ({
       ...state,
       user: payload,
     }),
-    removeUser: (state) => ({
+    removeUser: state => ({
       ...state,
-      user: {},
+      user: {} as User,
     }),
     setAuthStatus: (state, { payload }: PayloadAction<AuthStatus>) => ({
       ...state,

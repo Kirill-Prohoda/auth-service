@@ -1,8 +1,9 @@
-import usersSlice from "./index";
-import { AppDispatch } from "../..";
+import usersSlice from './index';
+import { AppDispatch } from '../..';
 
-const { changeUser, deleteUser, setError, setLoading, setUsers } =
-  usersSlice.actions;
+const { setError, setLoading, setUsers } = usersSlice.actions;
+
+// changeUser, deleteUser,
 
 const us = {
   fetchUsers: () => async (dispatch: AppDispatch) => {

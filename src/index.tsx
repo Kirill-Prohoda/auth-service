@@ -1,16 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-import { HashRouter } from "react-router-dom";
-import "./index.css";
-import Main from "./main";
-import reportWebVitals from "./reportWebVitals";
-import { store } from "./store";
-import { Provider } from "react-redux";
+import { HashRouter } from 'react-router-dom';
+import './index.scss';
+import Main from './main';
+import reportWebVitals from './reportWebVitals';
+import { store } from './store';
+import { Provider } from 'react-redux';
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
     <HashRouter>

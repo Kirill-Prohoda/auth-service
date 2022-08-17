@@ -1,15 +1,16 @@
-import { AppDispatch } from "../..";
-import auth, { AuthStatus } from "./index";
+import { AppDispatch } from '../..';
+import auth, { AuthStatus, User } from './index';
 
-const { setUser, removeUser, setAuthStatus, setLoading, setError } =
-  auth.actions;
+const { setUser, removeUser, setAuthStatus, setLoading, setError } = auth.actions;
 
-const user = {
-  name: "Kirill",
+const user: User = {
+  id: '1001',
+  name: 'Kirill',
 };
 const au = {
   checkUser: () => async (dispatch: AppDispatch) => {
-    const token: any = localStorage.getItem("token");
+    const token: string = localStorage.getItem('token') ?? '';
+
     if (token) {
       try {
         dispatch(setLoading(true));
@@ -33,10 +34,7 @@ const au = {
       dispatch(setLoading(true));
       const { status, data } = { status: true, data: user };
       if (status) {
-        localStorage.setItem(
-          "token",
-          "kdsjhflskdhfshdwerwlerhw0980248393klj23"
-        );
+        localStorage.setItem('token', `${login} ${pass}`);
         dispatch(setUser(data));
         dispatch(setAuthStatus(AuthStatus.Auth));
       }
@@ -48,7 +46,7 @@ const au = {
     }
   },
   doLogout: () => async (dispatch: AppDispatch) => {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     dispatch(removeUser());
   },
 };

@@ -1,9 +1,9 @@
-import { configureStore } from "@reduxjs/toolkit";
-import auth from "./slices/auth";
-import users from "./slices/auth";
+import { configureStore } from '@reduxjs/toolkit';
+import auth from './slices/auth';
+import users from './slices/auth';
 
-import authAC from "./slices/auth/action-create";
-import usersAC from "./slices/users/action-create";
+import authAC from './slices/auth/action-create';
+import usersAC from './slices/users/action-create';
 
 export const store = configureStore({
   reducer: {

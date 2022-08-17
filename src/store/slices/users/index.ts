@@ -1,7 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { User } from '../auth';
 
-type Users = any[];
+type Users = User[];
+
 export interface UsersState {
   users: Users;
   error: string;
@@ -10,12 +12,12 @@ export interface UsersState {
 
 const initialState: UsersState = {
   users: [] as Users,
-  error: "",
+  error: '',
   isLoading: false,
 };
 
 export const usersSlice = createSlice({
-  name: "users",
+  name: 'users',
   initialState,
   reducers: {
     setUsers: (state, { payload }) => {
@@ -23,13 +25,11 @@ export const usersSlice = createSlice({
     },
     changeUser: (state, { payload }) => ({
       ...state,
-      users: state.users.map((user) =>
-        user.id === payload.id ? payload : user
-      ),
+      users: state.users.map(user => (user.id === payload.id ? payload : user)),
     }),
     deleteUser: (state, { payload }) => ({
       ...state,
-      users: state.users.filter((user) => user.id !== payload.id),
+      users: state.users.filter(user => user.id !== payload.id),
     }),
     setLoading: (state, { payload }: PayloadAction<boolean>) => ({
       ...state,

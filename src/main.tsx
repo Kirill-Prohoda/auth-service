@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useActions } from "./hooks/useActions";
-import { useSelector } from "react-redux";
-import CustomRoutes from "./routes";
-import { RootState } from "./store";
-import { AuthStatus } from "./store/slices/auth";
+import React, { useEffect } from 'react';
+import { useActions } from './hooks/useActions';
+import { useSelector } from 'react-redux';
+import CustomRoutes from './routes';
+import { RootState } from './store';
+import { AuthStatus } from './store/slices/auth';
 
 const Main = () => {
   const { checkUser } = useActions();

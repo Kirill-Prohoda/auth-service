@@ -1,5 +1,5 @@
-import React from "react";
-import { useActions } from "../../hooks/useActions";
+import React from 'react';
+import { useActions } from '../../hooks/useActions';
 
 const Login = () => {
   const { doLogin } = useActions();
@@ -7,7 +7,7 @@ const Login = () => {
   return (
     <div>
       login
-      <button type="button" onClick={() => doLogin("admin", "admin")}>
+      <button type="button" onClick={() => doLogin('admin', 'admin')}>
         doLogin
       </button>
     </div>
