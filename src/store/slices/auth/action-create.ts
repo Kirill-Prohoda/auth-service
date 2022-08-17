@@ -1,20 +1,18 @@
 import { AppDispatch } from '../..';
-import auth, { AuthStatus, User } from './index';
+import AuthService from '../../../api/AuthService';
+import auth, { AuthStatus } from './index';
 
 const { setUser, removeUser, setAuthStatus, setLoading, setError } = auth.actions;
 
-const user: User = {
-  id: '1001',
-  name: 'Kirill',
-};
 const au = {
   checkUser: () => async (dispatch: AppDispatch) => {
     const token: string = localStorage.getItem('token') ?? '';
 
     if (token) {
+      const { login, pass } = JSON.parse(token);
       try {
         dispatch(setLoading(true));
-        const { status, data } = { status: true, data: user };
+        const { status, data } = await AuthService.doLogin(login, pass);
         if (status) {
           dispatch(setUser(data));
           dispatch(setAuthStatus(AuthStatus.Auth));
@@ -32,9 +30,9 @@ const au = {
   doLogin: (login: string, pass: string) => async (dispatch: AppDispatch) => {
     try {
       dispatch(setLoading(true));
-      const { status, data } = { status: true, data: user };
+      const { status, data } = await AuthService.doLogin(login, pass);
       if (status) {
-        localStorage.setItem('token', `${login} ${pass}`);
+        localStorage.setItem('token', JSON.stringify({ login, pass }));
         dispatch(setUser(data));
         dispatch(setAuthStatus(AuthStatus.Auth));
       }
@@ -48,6 +46,7 @@ const au = {
   doLogout: () => async (dispatch: AppDispatch) => {
     localStorage.removeItem('token');
     dispatch(removeUser());
+    dispatch(setAuthStatus(AuthStatus.NoAuth));
   },
 };
 

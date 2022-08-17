@@ -1,7 +1,13 @@
 import React from 'react';
+import MenuLayout from '../../layouts/menuLayout/MenuLayout';
+import { Container } from '@mui/material';
 
 const Main = () => {
-  return <div className={'text-3xl font-bold underline'}>Main</div>;
+  return (
+    <MenuLayout>
+      <Container maxWidth="xl">hello</Container>
+    </MenuLayout>
+  );
 };
 
 export default Main;

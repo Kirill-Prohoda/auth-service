@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import auth from './slices/auth';
-import users from './slices/auth';
+import users from './slices/users';
 
 import authAC from './slices/auth/action-create';
 import usersAC from './slices/users/action-create';

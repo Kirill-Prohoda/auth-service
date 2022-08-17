@@ -1,18 +1,14 @@
 import usersSlice from './index';
 import { AppDispatch } from '../..';
+import UsersService from '../../../api/UsersService';
 
 const { setError, setLoading, setUsers } = usersSlice.actions;
-
-// changeUser, deleteUser,
 
 const us = {
   fetchUsers: () => async (dispatch: AppDispatch) => {
     try {
       dispatch(setLoading(true));
-      const { status, data } = await (() => ({
-        status: true,
-        data: [],
-      }))();
+      const { status, data } = await UsersService.fetchUsers();
 
       if (status) {
         dispatch(setUsers(data));

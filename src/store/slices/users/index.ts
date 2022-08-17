@@ -1,17 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { User } from '../auth';
-
-type Users = User[];
+import { User } from '../../../models/baseTypes';
 
 export interface UsersState {
-  users: Users;
+  users: User[];
   error: string;
   isLoading: boolean;
 }
 
 const initialState: UsersState = {
-  users: [] as Users,
+  users: [] as User[],
   error: '',
   isLoading: false,
 };

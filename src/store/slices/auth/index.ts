@@ -1,10 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-
-export type User = {
-  id: string;
-  name: string;
-};
+import { User } from '../../../models/baseTypes';
 
 export enum AuthStatus {
   Auth = 'Auth',
