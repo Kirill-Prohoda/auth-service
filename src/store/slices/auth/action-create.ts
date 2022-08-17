@@ -21,7 +21,7 @@ const au = {
           dispatch(setError(''));
         }
         if (status === 501) {
-          dispatch(setError(JSON.stringify(Constants.NotAuth)));
+          dispatch(setError(JSON.stringify(Constants.NotCorrectLoginOrPassword)));
           dispatch(setAuthStatus(AuthStatus.NoAuth));
         }
       } catch (e) {
@@ -45,7 +45,7 @@ const au = {
         dispatch(setError(''));
       }
       if (status === 501) {
-        dispatch(setError(Constants.NotAuth));
+        dispatch(setError(Constants.NotCorrectLoginOrPassword));
         dispatch(setAuthStatus(AuthStatus.NoAuth));
       }
     } catch (e) {

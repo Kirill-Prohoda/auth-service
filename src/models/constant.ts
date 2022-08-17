@@ -1,4 +1,4 @@
 enum Constants {
-  NotAuth = 'Не авторизован',
+  NotCorrectLoginOrPassword = 'Не верный логин или пароль',
 }
 export { Constants };
