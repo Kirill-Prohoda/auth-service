@@ -1,3 +1,8 @@
+export enum Role {
+  Admin = 'admin',
+  Guest = 'guest',
+}
+
 export type Response<T> = {
   status: number;
   data: T;
@@ -5,6 +10,7 @@ export type Response<T> = {
 export type User = {
   id: string;
   name: string;
-  email: string;
+  login: string;
   pass: string;
+  role: Role;
 };
