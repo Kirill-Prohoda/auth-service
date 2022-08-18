@@ -9,5 +9,6 @@ enum Constants {
   Role = 'Pоль',
   Tools = 'Инструменты',
   Create = 'Создать',
+  Search = 'Поиск',
 }
 export { Constants };

@@ -49,13 +49,39 @@ const Users = () => {
   const { users } = useTypedSelector(state => state.users);
   const { user: root } = useTypedSelector(state => state.auth);
 
+  const [search, setSearch] = useState<string>('');
+  const [copyUsers, setCopyUsers] = useState<User[]>([] as User[]);
   const [copyUser, setCopyUser] = useState<User>({} as User);
 
   useEffect(() => {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    setCopyUsers(users);
+  }, [users]);
+
+  useEffect(() => {
+    if (search) {
+      setCopyUsers(
+        users.filter(user => {
+          return (
+            user.name.indexOf(search) >= 0 ||
+            user.login.indexOf(search) >= 0 ||
+            (user.id + '').indexOf(search) >= 0
+          );
+        })
+      );
+    } else {
+      setCopyUsers(users);
+    }
+  }, [search]);
+
   // e: React.SyntheticEvent<HTMLButtonElement>
+
+  const hendlerSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
 
   const handlerClick = (user: User) => () => {
     setCopyUser(user);
@@ -103,9 +129,22 @@ const Users = () => {
             </Item>
           ) : null}
 
+          <TableRow>
+            <Item sx={{ padding: '0 10px' }}>
+              <TextField
+                id="standard-basic"
+                variant="standard"
+                fullWidth
+                label={Constants.Search}
+                value={search}
+                onChange={hendlerSearch}
+              />
+            </Item>
+          </TableRow>
+
           <Item>
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableContainer component={Paper} sx={{ height: 630 }}>
+              <Table sx={{ minWidth: 650, maxHeight: 200 }} aria-label="simple table" stickyHeader>
                 <TableHead>
                   <TableRow>
                     <TableCell align="center">{Constants.Id}</TableCell>
@@ -117,7 +156,7 @@ const Users = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {users.map(user => {
+                  {copyUsers.map(user => {
                     const isEdit = user.id === copyUser?.id;
                     return (
                       <TableRow
@@ -127,8 +166,7 @@ const Users = () => {
                             border: 0,
                             ...styleWrap,
                           },
-                        }}
-                      >
+                        }}>
                         <TableCell align="center" sx={{ maxWidth: 80, ...styleWrap }}>
                           {user.id}
                         </TableCell>
@@ -136,8 +174,7 @@ const Users = () => {
                           component="th"
                           align="center"
                           scope="row"
-                          sx={{ maxWidth: 80, ...styleWrap }}
-                        >
+                          sx={{ maxWidth: 80, ...styleWrap }}>
                           {isEdit ? (
                             <TextField
                               id="standard-basic"
@@ -176,8 +213,7 @@ const Users = () => {
                               labelId="demo-simple-select-label"
                               id="demo-simple-select"
                               value={copyUser.role}
-                              onChange={handlerChangeSelect}
-                            >
+                              onChange={handlerChangeSelect}>
                               {Object.entries(Role).map(([en, ru], index) => {
                                 return (
                                   <MenuItem key={ru + index} value={ru}>
