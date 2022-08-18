@@ -18,31 +18,22 @@ export const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    setUsers: (state, { payload }) => ({
+    setUsers: (state, { payload }: PayloadAction<User[]>) => ({
       ...state,
       users: payload,
     }),
-    setUser: (state, { payload }) => {
-      // eslint-disable-next-line no-debugger
-      debugger;
-
-      return {
-        ...state,
-        users: [...state.users, payload],
-      };
-    },
-    changeUser: (state, { payload }) => ({
+    setUser: (state, { payload }: PayloadAction<User>) => ({
+      ...state,
+      users: [...state.users, payload],
+    }),
+    changeUser: (state, { payload }: PayloadAction<User>) => ({
       ...state,
       users: state.users.map(user => (user.id === payload.id ? payload : user)),
     }),
-    deleteUser: (state, { payload }) => {
-      // eslint-disable-next-line no-debugger
-      debugger;
-      return {
-        ...state,
-        users: state.users.filter(user => user.id !== payload.id),
-      };
-    },
+    deleteUser: (state, { payload }: PayloadAction<User>) => ({
+      ...state,
+      users: state.users.filter(user => user.id !== payload.id),
+    }),
     setLoading: (state, { payload }: PayloadAction<boolean>) => ({
       ...state,
       isLoading: payload,

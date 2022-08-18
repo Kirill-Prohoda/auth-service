@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { useActions } from '../../hooks/useActions';
 import { Button, Typography, TextField, Box } from '@mui/material';
 
@@ -8,6 +8,7 @@ import st from './login.module.scss';
 import { useTypedSelector } from '../../hooks/useTypeSelectors';
 import { AuthStatus } from '../../store/slices/auth';
 import { useNavigate } from 'react-router-dom';
+import { Constants } from '../../models/constant';
 
 enum Mode {
   Pass = 'pass',
@@ -16,15 +17,13 @@ enum Mode {
 
 const Login = () => {
   const { authStatus, error } = useTypedSelector(state => state.auth);
-  const theme = useTheme();
   const navigate = useNavigate();
-
   const { doLogin } = useActions();
 
   const [login, setLogin] = useState<string>('');
   const [pass, setPass] = useState<string>('');
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (authStatus === AuthStatus.Auth) {
       navigate('/');
     }
@@ -51,7 +50,6 @@ const Login = () => {
     doLogin(login, pass);
   };
 
-  console.log(theme);
   return (
     <div className={st.container}>
       <div className={st.panel}>
@@ -63,7 +61,7 @@ const Login = () => {
             align="center"
             sx={{ m: 3 }}
           >
-            Вход
+            {Constants.AuthTitle}
           </Typography>
           <TextField
             margin="normal"
@@ -72,7 +70,7 @@ const Login = () => {
             value={login}
             onChange={handleChange(Mode.Login)}
             id="email"
-            label="Логин"
+            label={Constants.Login}
             name="email"
             autoComplete="email"
             size="small"
@@ -85,14 +83,14 @@ const Login = () => {
             value={pass}
             onChange={handleChange(Mode.Pass)}
             name="password"
-            label="Пароль"
+            label={Constants.Password}
             type="password"
             id="password"
             size="small"
             autoComplete="current-password"
           />
           <Button type="submit" fullWidth variant="contained" size="small" sx={{ mt: 3, mb: 2 }}>
-            Войти
+            {Constants.AuthButton}
           </Button>
         </Box>
         <Typography>{error}</Typography>
