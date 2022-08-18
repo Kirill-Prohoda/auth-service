@@ -24,6 +24,7 @@ npm run concurrently
 
 - typescript
 - React/Redux-Toolkit
+- Redux-Saga
 - MaterialUI
 - Axios
 - react-router-dom@6
