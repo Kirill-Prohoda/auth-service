@@ -22,7 +22,7 @@ const CustomRoutes: FC<ICustomRoutes> = ({ isAuth }) => {
     <>
       <Routes>
         <Route path={'/'}>
-          <Route index element={<Private component={Main} isAuth={isAuth} />} />
+          <Route index element={<Main />} />
           <Route path={'users'} element={<Private component={Users} isAuth={isAuth} />} />
           <Route path={'login'} element={<Login />} />
         </Route>

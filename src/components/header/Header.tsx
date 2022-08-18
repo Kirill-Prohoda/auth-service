@@ -20,7 +20,7 @@ import { useTypedSelector } from '../../hooks/useTypeSelectors';
 const Header: FC = () => {
   const { doLogout } = useActions();
   const navigate = useNavigate();
-  const { user } = useTypedSelector(state => state.auth);
+  const { user: root } = useTypedSelector(state => state.auth);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -43,7 +43,7 @@ const Header: FC = () => {
     },
     {
       path: '/users',
-      title: 'user',
+      title: 'users',
     },
   ];
 
@@ -142,7 +142,7 @@ const Header: FC = () => {
             ))}
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 0 }}>
-            <Typography textAlign="center">{user.name}</Typography>
+            <Typography textAlign="center">{root.name}</Typography>
             <Tooltip title="Open settings">
               <IconButton aria-label="fingerprint" sx={{ color: 'white', fontSize: 50 }}>
                 <ExitToApp sx={{ fontSize: 40 }} onClick={handlerClick} />
