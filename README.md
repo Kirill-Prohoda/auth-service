@@ -29,4 +29,6 @@ npm run concurrently
 - react-router-dom@6
 - css-module
 
+### `Root role: admin/admin`
+
 Project [page](https://github.com/Kirill-Prohoda/auth-service)

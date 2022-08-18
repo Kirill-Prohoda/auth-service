@@ -24,6 +24,7 @@ import { styled } from '@mui/material/styles';
 import { Role, User } from '../../models/baseTypes';
 import getEmptyUser from '../../models/models';
 import { SelectChangeEvent } from '@mui/material';
+import { Constants } from '../../models/constant';
 
 // padding: theme.spacing(1),
 
@@ -91,24 +92,28 @@ const Users = () => {
     <MenuLayout>
       <Container maxWidth="xl" sx={{ position: 'relative' }}>
         <Stack spacing={2}>
-          <Item>
-            <Button fullWidth onClick={handlerCreate}>
-              <Typography sx={{ display: 'flex', alignItems: 'center' }}>создать</Typography>
-              <Delete />
-            </Button>
-          </Item>
+          {root.role === Role.Admin ? (
+            <Item>
+              <Button fullWidth onClick={handlerCreate}>
+                <Typography sx={{ display: 'flex', alignItems: 'center' }}>
+                  {Constants.Create}
+                </Typography>
+                <Delete />
+              </Button>
+            </Item>
+          ) : null}
 
           <Item>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell align="center">id</TableCell>
-                    <TableCell align="center">name</TableCell>
-                    <TableCell align="center">login</TableCell>
-                    <TableCell align="center">pass</TableCell>
-                    <TableCell align="center">role</TableCell>
-                    {root.role === Role.Admin ? <TableCell align="center">tools</TableCell> : null}
+                    <TableCell align="center">{Constants.Id}</TableCell>
+                    <TableCell align="center">{Constants.Name}</TableCell>
+                    <TableCell align="center">{Constants.Login}</TableCell>
+                    <TableCell align="center">{Constants.Password}</TableCell>
+                    <TableCell align="center">{Constants.Role}</TableCell>
+                    <TableCell align="center">{Constants.Tools}</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -122,7 +127,8 @@ const Users = () => {
                             border: 0,
                             ...styleWrap,
                           },
-                        }}>
+                        }}
+                      >
                         <TableCell align="center" sx={{ maxWidth: 80, ...styleWrap }}>
                           {user.id}
                         </TableCell>
@@ -130,7 +136,8 @@ const Users = () => {
                           component="th"
                           align="center"
                           scope="row"
-                          sx={{ maxWidth: 80, ...styleWrap }}>
+                          sx={{ maxWidth: 80, ...styleWrap }}
+                        >
                           {isEdit ? (
                             <TextField
                               id="standard-basic"
@@ -146,26 +153,31 @@ const Users = () => {
                         <TableCell align="center" sx={{ maxWidth: 80, ...styleWrap }}>
                           {user.login}
                         </TableCell>
+
                         <TableCell align="center" sx={{ maxWidth: 80, ...styleWrap }}>
-                          {isEdit ? (
-                            <TextField
-                              id="standard-basic"
-                              variant="standard"
-                              sx={{ maxWidth: 80 }}
-                              value={copyUser.pass}
-                              onChange={handlerChange('pass')}
-                            />
-                          ) : (
-                            user.pass
-                          )}
+                          {root.role === Role.Admin || user.id === root.id ? (
+                            isEdit ? (
+                              <TextField
+                                id="standard-basic"
+                                variant="standard"
+                                sx={{ maxWidth: 80 }}
+                                value={copyUser.pass}
+                                onChange={handlerChange('pass')}
+                              />
+                            ) : (
+                              user.pass
+                            )
+                          ) : null}
                         </TableCell>
+
                         <TableCell align="center" sx={{ maxWidth: 80, ...styleWrap }}>
-                          {isEdit ? (
+                          {root.role === Role.Admin && isEdit ? (
                             <Select
                               labelId="demo-simple-select-label"
                               id="demo-simple-select"
                               value={copyUser.role}
-                              onChange={handlerChangeSelect}>
+                              onChange={handlerChangeSelect}
+                            >
                               {Object.entries(Role).map(([en, ru], index) => {
                                 return (
                                   <MenuItem key={ru + index} value={ru}>
@@ -178,26 +190,27 @@ const Users = () => {
                             user.role
                           )}
                         </TableCell>
-                        {root.role === Role.Admin ? (
-                          <TableCell align="center" sx={{ maxWidth: 80, ...styleWrap }}>
-                            {isEdit ? (
-                              <IconButton onClick={handlerSave}>
-                                <Save />
-                              </IconButton>
-                            ) : (
-                              <>
+
+                        <TableCell align="center" sx={{ maxWidth: 80, ...styleWrap }}>
+                          {isEdit ? (
+                            <IconButton onClick={handlerSave}>
+                              <Save />
+                            </IconButton>
+                          ) : (
+                            <>
+                              {root.role === Role.Admin || user.id === root.id ? (
                                 <IconButton onClick={handlerClick(user)}>
                                   <Edit />
                                 </IconButton>
-                                {user.id !== root.id ? (
-                                  <IconButton onClick={handlerDelete(user)}>
-                                    <Delete />
-                                  </IconButton>
-                                ) : null}
-                              </>
-                            )}
-                          </TableCell>
-                        ) : null}
+                              ) : null}
+                              {root.role === Role.Admin && user.id !== root.id ? (
+                                <IconButton onClick={handlerDelete(user)}>
+                                  <Delete />
+                                </IconButton>
+                              ) : null}
+                            </>
+                          )}
+                        </TableCell>
                       </TableRow>
                     );
                   })}
