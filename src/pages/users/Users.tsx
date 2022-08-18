@@ -166,7 +166,8 @@ const Users = () => {
                             border: 0,
                             ...styleWrap,
                           },
-                        }}>
+                        }}
+                      >
                         <TableCell align="center" sx={{ maxWidth: 80, ...styleWrap }}>
                           {user.id}
                         </TableCell>
@@ -174,7 +175,8 @@ const Users = () => {
                           component="th"
                           align="center"
                           scope="row"
-                          sx={{ maxWidth: 80, ...styleWrap }}>
+                          sx={{ maxWidth: 80, ...styleWrap }}
+                        >
                           {isEdit ? (
                             <TextField
                               id="standard-basic"
@@ -213,7 +215,8 @@ const Users = () => {
                               labelId="demo-simple-select-label"
                               id="demo-simple-select"
                               value={copyUser.role}
-                              onChange={handlerChangeSelect}>
+                              onChange={handlerChangeSelect}
+                            >
                               {Object.entries(Role).map(([en, ru], index) => {
                                 return (
                                   <MenuItem key={ru + index} value={ru}>
