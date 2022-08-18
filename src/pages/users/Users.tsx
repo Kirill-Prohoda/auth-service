@@ -130,10 +130,10 @@ const Users = () => {
           ) : null}
 
           <TableRow>
-            <Item sx={{ padding: '0 10px' }}>
+            <Item>
               <TextField
-                id="standard-basic"
-                variant="standard"
+                id="outlined-basic"
+                variant="outlined"
                 fullWidth
                 label={Constants.Search}
                 value={search}
@@ -143,7 +143,7 @@ const Users = () => {
           </TableRow>
 
           <Item>
-            <TableContainer component={Paper} sx={{ height: 630 }}>
+            <TableContainer component={Paper} sx={{ height: 610 }}>
               <Table sx={{ minWidth: 650, maxHeight: 200 }} aria-label="simple table" stickyHeader>
                 <TableHead>
                   <TableRow>
