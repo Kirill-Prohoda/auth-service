@@ -21,7 +21,7 @@ const Main = () => {
   return (
     <MenuLayout>
       <Container maxWidth="xl">
-        <ImageList sx={{ width: '100%', height: '100%', marginTop: 10, marginBottom: 10 }}>
+        <ImageList sx={{ width: '100%', height: '100%' }}>
           <ImageListItem key="Subheader" cols={2}></ImageListItem>
           {randomImg(8).map(item => (
             <ImageListItem key={item.img}>
@@ -32,8 +32,7 @@ const Main = () => {
                 actionIcon={
                   <IconButton
                     sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                    aria-label={`info about ${item.title}`}
-                  >
+                    aria-label={`info about ${item.title}`}>
                     <InfoIcon />
                   </IconButton>
                 }

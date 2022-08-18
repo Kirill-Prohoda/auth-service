@@ -1,9 +1,53 @@
 {
   "users": [
-    { "id": 1, "name": "name1", "email": "name1", "pass": "name1" },
-    { "id": 2, "name": "name2", "email": "name2", "pass": "name2" },
-    { "id": 3, "name": "name3", "email": "name3", "pass": "name3" },
-    { "id": 4, "name": "name4", "email": "name4", "pass": "name4" },
-    { "id": 5, "name": "name5", "email": "name5", "pass": "name5" }
+    {
+      "id": 1,
+      "name": "admin",
+      "login": "admin",
+      "pass": "admin",
+      "role": "admin"
+    },
+    {
+      "id": "72",
+      "login": "guest72",
+      "name": "guest",
+      "pass": "guest72",
+      "role": "guest"
+    },
+    {
+      "id": "299",
+      "login": "guest299",
+      "name": "guest299",
+      "pass": "9gvq909h",
+      "role": "guest"
+    },
+    {
+      "id": "64",
+      "login": "guest64",
+      "name": "guest64",
+      "pass": "cmvd2bwf",
+      "role": "guest"
+    },
+    {
+      "id": "947",
+      "login": "guest947",
+      "name": "guest947",
+      "pass": "1khdq2uo",
+      "role": "guest"
+    },
+    {
+      "id": "131",
+      "login": "guest131",
+      "name": "guest131",
+      "pass": "rre0ps2f",
+      "role": "guest"
+    },
+    {
+      "id": "440",
+      "login": "guest440",
+      "name": "guest440",
+      "pass": "sx4zvwos",
+      "role": "guest"
+    }
   ]
 }
