@@ -2,11 +2,34 @@ import usersSlice from './index';
 import { AppDispatch } from '../..';
 import UsersService from '../../../api/UsersService';
 import { User } from '../../../models/baseTypes';
+import { call, put, takeEvery } from 'redux-saga/effects';
 
 const { setError, setLoading, setUsers, changeUser, deleteUser, setUser } = usersSlice.actions;
 
+export function* watchFetchUsers() {
+  yield takeEvery('getUsers', fetchUsers);
+}
+
+function* fetchUsers() {
+  try {
+    yield put(setLoading(true));
+    const { status, data } = yield call(UsersService.fetchUsers);
+    if (status) {
+      yield put(setUsers(data));
+    }
+  } catch (e) {
+    yield put(setError(JSON.stringify(e)));
+  } finally {
+    yield put(setLoading(false));
+  }
+}
+
 const us = {
   fetchUsers: () => async (dispatch: AppDispatch) => {
+    dispatch({ type: 'getUsers' });
+  },
+
+  originalFetchUsers: () => async (dispatch: AppDispatch) => {
     try {
       dispatch(setLoading(true));
       const { status, data } = await UsersService.fetchUsers();
