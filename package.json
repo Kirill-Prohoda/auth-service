@@ -42,6 +42,11 @@
     "concurrently": "concurrently 'yarn start' 'yarn jsonServer' "
   },
   "homepage": "./",
+  "engines": {
+    "node": ">=18.5.0",
+    "npm": ">=8.12.1",
+    "yarn": ">=1.22.17"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
