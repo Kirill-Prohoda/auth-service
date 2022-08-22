@@ -2,7 +2,7 @@ enum Constants {
   NotCorrectLoginOrPassword = 'Не верный логин или пароль',
   Password = 'Пароль',
   Login = 'Логин',
-  AuthTitle = 'Дверь',
+  AuthTitle = 'Авторизация',
   AuthButton = 'Войти',
   Name = 'Имя',
   Id = 'id',
